@@ -15,16 +15,19 @@ app.get('/station/:id', (req, res) => {
   let url = `http://www.ndbc.noaa.gov/data/latest_obs/${req.params.id}.rss`;
   request(url, { json: false }, (err, response, body) => {
     if (err) {
-      res.status(404);
-      return console.log(err);
+      console.log(err);
+      res.sendStatus(err);
     }
 
-    var jsonBody = parser.toJson(body, {
-      'object': true
-    });
-    jsonBody = jsonBody['rss'];
-
-    res.json(jsonBody);
+    try {
+      var jsonBody = parser.toJson(body, {
+        'object': true
+      });
+      jsonBody = jsonBody['rss'];
+      res.json(jsonBody);
+    } catch (e) {
+      res.sendStatus(404);
+    }
   });
 })
 
