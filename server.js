@@ -14,7 +14,10 @@ app.get('/', (req, res) => {
 app.get('/station/:id', (req, res) => {
   let url = `http://www.ndbc.noaa.gov/data/latest_obs/${req.params.id}.rss`;
   request(url, { json: false }, (err, response, body) => {
-    if (err) { return console.log(err); }
+    if (err) {
+      res.status(404);
+      return console.log(err);
+    }
 
     var jsonBody = parser.toJson(body, {
       'object': true
