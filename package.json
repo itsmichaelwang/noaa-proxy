@@ -1,0 +1,17 @@
+{
+  "name": "noaa-proxy",
+  "version": "1.0.0",
+  "description": "NOAA Server proxy that wraps it in SSL.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "request": "^2.83.0",
+    "xml2json": "^0.11.0"
+  }
+}
